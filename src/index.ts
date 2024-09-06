@@ -1,18 +1,32 @@
-/**
- * Welcome to Cloudflare Workers! This is your first worker.
- *
- * - Run `npm run dev` in your terminal to start a development server
- * - Open a browser tab at http://localhost:8787/ to see your worker in action
- * - Run `npm run deploy` to publish your worker
- *
- * Bind resources to your worker in `wrangler.toml`. After adding bindings, a type definition for the
- * `Env` object can be regenerated with `npm run cf-typegen`.
- *
- * Learn more at https://developers.cloudflare.com/workers/
- */
+import { trace } from "@opentelemetry/api";
+import { OTLPTraceExporter } from "@opentelemetry/exporter-trace-otlp-http";
+
+import {
+  cloudflareWorkerTracer,
+  shutdownExporter,
+  Telemetry,
+} from "./telemetry/cloudflare-worker-tracer";
 
 export default {
-  async fetch(request, env, ctx): Promise<Response> {
-    return new Response("Hello World!");
+  async scheduled(_controller: ScheduledController, env: Env, ctx: ExecutionContext) {
+    const environment = env.ENVIRONMENT;
+    const tracingExporter: OTLPTraceExporter = cloudflareWorkerTracer({
+      environment,
+      serviceName: env.SERVICE_NAME,
+    });
+
+    const tracer = trace.getTracer(`${env.SERVICE_NAME}-tracer`);
+    const parentSpan = tracer.startSpan("Start scheduled event processing");
+    const telemetry: Telemetry = {
+      parentSpan,
+      tracer,
+    };
+
+    parentSpan.end();
+
+    // Wait 3 seconds until shutting down the tracing exporter. There is a 1 second
+    // delay on sending batches to the collector.
+    const exporterShutdownDelay = 3000;
+    ctx.waitUntil(shutdownExporter(tracingExporter, exporterShutdownDelay));
   },
-} satisfies ExportedHandler<Env>;
+};
