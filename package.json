@@ -5,9 +5,13 @@
   "type": "module",
   "scripts": {
     "deploy": "wrangler deploy",
-    "dev": "wrangler dev",
-    "start": "wrangler dev",
+    "dev": "wrangler dev --env dev --test-scheduled",
+    "dev:init-db": "pnpm run migrations:apply kustom_app_dev --local --env dev",
+    "migrations:create": "wrangler d1 migrations create",
+    "migrations:apply": "wrangler d1 migrations apply",
+    "start": "wrangler dev --env dev --test-scheduled",
     "test": "vitest run --config vitest.config.mts",
+    "test:init-db": "echo y | pnpm run migrations:apply kustom_app_test --local --env test --persist-to .wrangler/state/test",
     "cf-typegen": "wrangler types"
   },
   "devDependencies": {
