@@ -14,7 +14,7 @@ This repository contains a Cloudflare worker which runs on a schedule (every 60 
 - Copy `sample.dev.vars` to `.dev.vars`
 - Add your WorkOS credentials to the `.dev.vars` file
 - Run with `pnpm run dev`
-- In another terminal tab run `http://localhost:8787/__scheduled`
+- In another terminal tab run `curl 'http://localhost:8787/__scheduled?cron=*+*+*+*+*'`
 - The default behavior for the development environment is to request events in the last 60 seconds from the WorkOS Events API
 - You can modify this behavior by adding `EVENTS_RANGE_START` and/or `EVENTS_RANGE_END` to `.dev.vars` to fetch events within a given time range. Both env vars need to be a Unix Timestamp in Milliseconds
 - See the [Testing](#testing) section for how to generate and test events within a specific time range
