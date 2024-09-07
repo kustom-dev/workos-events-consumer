@@ -100,6 +100,6 @@
 		// "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
 		"skipLibCheck": true /* Skip type checking all .d.ts files. */
 	},
-	"exclude": ["test"],
-	"include": ["worker-configuration.d.ts", "src/**/*.ts"]
+	"exclude": ["node_modules"],
+	"include": ["worker-configuration.d.ts", "src/**/*.ts", "test/**/*.ts", "vitest.config.mts"]
 }
