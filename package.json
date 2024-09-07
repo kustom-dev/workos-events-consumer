@@ -6,6 +6,7 @@
   "scripts": {
     "deploy": "wrangler deploy",
     "dev": "wrangler dev --env dev --test-scheduled",
+    "dev:destroy-db": "rm -rf .wrangler/state/v3/d1",
     "dev:init-db": "pnpm run migrations:apply kustom_app_dev --local --env dev",
     "migrations:create": "wrangler d1 migrations create",
     "migrations:apply": "wrangler d1 migrations apply",
@@ -17,12 +18,14 @@
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240903.0",
     "@eslint/js": "^9.10.0",
+    "@types/node": "^22.5.4",
     "eslint": "^9.10.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.30.0",
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "globals": "^15.9.0",
+    "miniflare": "^3.20240821.1",
     "prettier": "^3.3.3",
     "typescript": "^5.5.4",
     "typescript-eslint": "^8.4.0",
