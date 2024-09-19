@@ -16,21 +16,21 @@
     "cf-typegen": "wrangler types"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20240903.0",
+    "@cloudflare/workers-types": "^4.20240909.0",
     "@eslint/js": "^9.10.0",
-    "@types/node": "^22.5.4",
+    "@types/node": "^22.5.5",
     "eslint": "^9.10.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.30.0",
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "globals": "^15.9.0",
-    "miniflare": "^3.20240821.1",
+    "miniflare": "^3.20240909.3",
     "prettier": "^3.3.3",
-    "typescript": "^5.5.4",
-    "typescript-eslint": "^8.4.0",
-    "vitest": "^2.0.5",
-    "wrangler": "^3.75.0"
+    "typescript": "^5.6.2",
+    "typescript-eslint": "^8.6.0",
+    "vitest": "^2.1.1",
+    "wrangler": "^3.78.5"
   },
   "dependencies": {
     "@opentelemetry/api": "^1.9.0",
@@ -44,10 +44,10 @@
     "@opentelemetry/sdk-metrics": "^1.26.0",
     "@opentelemetry/sdk-trace-base": "^1.26.0",
     "@opentelemetry/sdk-trace-web": "^1.26.0",
-    "@workos-inc/node": "^7.26.0"
+    "@workos-inc/node": "^7.27.3"
   },
   "engines": {
     "node": ">=20.0.0"
   },
-  "packageManager": "pnpm@9.9.0+sha512.60c18acd138bff695d339be6ad13f7e936eea6745660d4cc4a776d5247c540d0edee1a563695c183a66eb917ef88f2b4feb1fc25f32a7adcadc7aaf3438e99c1"
+  "packageManager": "pnpm@9.10.0+sha512.73a29afa36a0d092ece5271de5177ecbf8318d454ecd701343131b8ebc0c1a91c487da46ab77c8e596d6acf1461e3594ced4becedf8921b074fbd8653ed7051c"
 }
